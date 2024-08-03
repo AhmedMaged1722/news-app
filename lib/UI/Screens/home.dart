@@ -1,43 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/constants/const.dart';
+import 'package:news/cubit/news_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kColor1,
-      appBar: AppBar(
-        backgroundColor: kColor1,
-        title: RichText(
-            text: const TextSpan(
-          text: 'News',
-          style: TextStyle(color: kBlack, fontSize: 24),
-          children: [
-            TextSpan(
-              text: 'App',
-              style: TextStyle(color: kColor4, fontSize: 24),
+    return BlocProvider(
+      create: (context) => NewsCubit(),
+      child: BlocConsumer<NewsCubit, NewsState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = NewsCubit.get(context);
+          return Scaffold(
+            backgroundColor: kColor1,
+            appBar: AppBar(
+              backgroundColor: kColor1,
+              title: RichText(
+                  text: const TextSpan(
+                text: 'News',
+                style: TextStyle(color: kBlack, fontSize: 24),
+                children: [
+                  TextSpan(
+                    text: 'App',
+                    style: TextStyle(color: kColor4, fontSize: 24),
+                  ),
+                ],
+              )),
+              centerTitle: true,
             ),
-          ],
-        )),
-        centerTitle: true,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
+            bottomNavigationBar: BottomNavigationBar(
+              unselectedFontSize: 14,
+              selectedFontSize: 18,
+              fixedColor: kColor1,
+              unselectedItemColor: kColor3,
+              backgroundColor: kColor4,
+              items: cubit.bottomItems,
+              currentIndex: cubit.currentIndex,
+              onTap: (value) {
+                cubit.changeBottomNav(value);
+              },
+            ),
+            body: cubit.screens[cubit.currentIndex],
+          );
+        },
       ),
     );
   }
