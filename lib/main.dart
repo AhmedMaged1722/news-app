@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news/UI/Screens/home.dart';
+import 'package:news/data/Services/api_services.dart';
 
 void main() {
+  ApiServices.init();
   runApp(const MyApp());
 }
 

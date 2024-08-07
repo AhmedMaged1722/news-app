@@ -27,7 +27,7 @@ class NewsCubit extends Cubit<NewsState> {
     BottomNavigationBarItem(
       backgroundColor: kColor2,
       icon: Icon(
-        Icons.article_outlined,
+        Icons.article,
         color: kColor2,
       ),
       label: 'General',
@@ -41,7 +41,7 @@ class NewsCubit extends Cubit<NewsState> {
     ),
     BottomNavigationBarItem(
       icon: Icon(
-        Icons.sports_basketball,
+        Icons.sports_esports,
         color: kColor2,
       ),
       label: 'Sports',

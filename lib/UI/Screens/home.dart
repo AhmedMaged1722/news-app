@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/constants/app_consts.dart';
 import 'package:news/constants/const.dart';
 import 'package:news/cubit/news_cubit.dart';
+import 'package:news/data/Services/api_services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -30,6 +34,22 @@ class HomePage extends StatelessWidget {
                 ],
               )),
               centerTitle: true,
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                ApiServices.getData(url: AppConsts.topHeadLine, query: {
+                  'country': 'eg',
+                  'apiKey': AppConsts.apiKey,
+                  'category': 'general'
+                }).then((value) {
+                  debugPrint(value?.data['articles'][0]['author']);
+                }).catchError((e) {
+                  debugPrint(e.toString());
+                });
+              },
+              backgroundColor: kColor4,
+              foregroundColor: kColor1,
+              child: const Icon(Icons.newspaper_outlined),
             ),
             bottomNavigationBar: BottomNavigationBar(
               unselectedFontSize: 14,
