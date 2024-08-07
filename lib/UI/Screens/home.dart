@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                   'apiKey': AppConsts.apiKey,
                   'category': 'general'
                 }).then((value) {
-                  debugPrint(value?.data['articles'][0]['author']);
+                  debugPrint(value?.data['articles'][5]['title']);
                 }).catchError((e) {
                   debugPrint(e.toString());
                 });
