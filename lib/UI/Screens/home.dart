@@ -1,11 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/constants/app_consts.dart';
 import 'package:news/constants/const.dart';
 import 'package:news/cubit/news_cubit.dart';
-import 'package:news/data/Services/api_services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,7 +9,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit(),
+      create: (context) => NewsCubit()
+        ..getGeneralData()
+        ..getBusinessData()
+        ..getSportsData(),
       child: BlocConsumer<NewsCubit, NewsState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -21,7 +20,9 @@ class HomePage extends StatelessWidget {
           return Scaffold(
             backgroundColor: kColor1,
             appBar: AppBar(
+              shadowColor: kColor1,
               backgroundColor: kColor1,
+              surfaceTintColor: kColor1,
               title: RichText(
                   text: const TextSpan(
                 text: 'News',
@@ -29,27 +30,15 @@ class HomePage extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: 'App',
-                    style: TextStyle(color: kColor4, fontSize: 24),
+                    style: TextStyle(
+                      color: kColor4,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               )),
               centerTitle: true,
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                ApiServices.getData(url: AppConsts.topHeadLine, query: {
-                  'country': 'eg',
-                  'apiKey': AppConsts.apiKey,
-                  'category': 'general'
-                }).then((value) {
-                  debugPrint(value?.data['articles'][5]['title']);
-                }).catchError((e) {
-                  debugPrint(e.toString());
-                });
-              },
-              backgroundColor: kColor4,
-              foregroundColor: kColor1,
-              child: const Icon(Icons.newspaper_outlined),
             ),
             bottomNavigationBar: BottomNavigationBar(
               unselectedFontSize: 14,

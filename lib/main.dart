@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/UI/Screens/home.dart';
 import 'package:news/data/Services/api_services.dart';
 
+import 'bloc_observer.dart';
+
 void main() {
+  Bloc.observer = MyBlocObserver();
   ApiServices.init();
   runApp(const MyApp());
 }
