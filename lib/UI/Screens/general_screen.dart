@@ -2,7 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/UI/Widgets/article.dart';
-import 'package:news/constants/const.dart';
+import 'package:news/constants/color.dart';
 import 'package:news/cubit/news_cubit.dart';
 
 class GeneralScreen extends StatelessWidget {
@@ -25,7 +25,6 @@ class GeneralScreen extends StatelessWidget {
               return const Divider(
                 indent: 20,
                 endIndent: 20,
-                color: kColor3,
                 thickness: 2,
               );
             },

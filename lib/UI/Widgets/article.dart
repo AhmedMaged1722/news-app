@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:news/UI/Screens/details.dart';
-import 'package:news/constants/const.dart';
+// import 'package:news/constants/color.dart';
 
 Widget article(context, article) {
   var urlToImage = article['urlToImage'];
@@ -42,11 +42,23 @@ Widget article(context, article) {
           Directionality(
             textDirection: TextDirection.rtl,
             child: Text(
-              '${article['title']}',
+              '${article['author']} :-',
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: kColor4,
+                  // color: kColor4,
                   overflow: TextOverflow.ellipsis),
+              textAlign: TextAlign.right,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: Text(
+              '${article['title']}',
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
               textAlign: TextAlign.right,
             ),
           ),
@@ -61,7 +73,6 @@ Widget article(context, article) {
                   '${article['publishedAt']}',
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: kColor4,
                       overflow: TextOverflow.ellipsis),
                 ),
               ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news/constants/const.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Details extends StatefulWidget {
@@ -27,12 +26,10 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kBlack,
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: kColor1,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -41,7 +38,6 @@ class _DetailsState extends State<Details> {
         title: Text(
           widget.name,
           style: const TextStyle(
-            color: kColor1,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

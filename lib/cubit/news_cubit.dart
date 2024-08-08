@@ -4,7 +4,7 @@ import 'package:news/UI/Screens/business_screen.dart';
 import 'package:news/UI/Screens/general_screen.dart';
 import 'package:news/UI/Screens/sports_screen.dart';
 import 'package:news/constants/app_consts.dart';
-import 'package:news/constants/const.dart';
+import 'package:news/constants/color.dart';
 import 'package:news/data/Services/api_services.dart';
 
 part 'news_state.dart';
@@ -30,21 +30,18 @@ class NewsCubit extends Cubit<NewsState> {
       backgroundColor: kColor2,
       icon: Icon(
         Icons.article,
-        color: kColor2,
       ),
       label: 'General',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.business,
-        color: kColor2,
       ),
       label: 'Business',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.sports_esports,
-        color: kColor2,
       ),
       label: 'Sports',
       backgroundColor: kColor4,

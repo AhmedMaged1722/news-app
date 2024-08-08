@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/constants/const.dart';
+import 'package:news/cubit/cubit/theme_cubit.dart';
 import 'package:news/cubit/news_cubit.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool themeChange = false;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -18,34 +24,34 @@ class HomePage extends StatelessWidget {
         builder: (context, state) {
           var cubit = NewsCubit.get(context);
           return Scaffold(
-            backgroundColor: kColor1,
             appBar: AppBar(
-              shadowColor: kColor1,
-              backgroundColor: kColor1,
-              surfaceTintColor: kColor1,
-              title: RichText(
-                  text: const TextSpan(
-                text: 'News',
-                style: TextStyle(color: kBlack, fontSize: 24),
-                children: [
-                  TextSpan(
-                    text: 'App',
-                    style: TextStyle(
-                      color: kColor4,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+              title: const Text(
+                'NewsApp',
+                style: TextStyle(
+                  // color: kColor1,
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              centerTitle: false,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    context.read<ThemeCubit>().toggleTheme();
+                    setState(() {});
+                    themeChange = !themeChange;
+                  },
+                  icon: Icon(
+                    themeChange
+                        ? Icons.brightness_2_outlined
+                        : Icons.brightness_2_sharp,
                   ),
-                ],
-              )),
-              centerTitle: true,
+                )
+              ],
             ),
             bottomNavigationBar: BottomNavigationBar(
               unselectedFontSize: 14,
               selectedFontSize: 18,
-              fixedColor: kColor1,
-              unselectedItemColor: kColor3,
-              backgroundColor: kColor4,
               items: cubit.bottomItems,
               currentIndex: cubit.currentIndex,
               onTap: (value) {
