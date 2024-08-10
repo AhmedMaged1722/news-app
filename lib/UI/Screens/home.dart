@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/cubit/cubit/theme_cubit.dart';
+import 'package:news/UI/Screens/settings.dart';
+// import 'package:news/constants/color.dart';
+// import 'package:news/cubit/cubit/theme_cubit.dart';
 import 'package:news/cubit/news_cubit.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool themeChange = false;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -37,17 +38,27 @@ class _HomePageState extends State<HomePage> {
               actions: [
                 IconButton(
                   onPressed: () {
-                    context.read<ThemeCubit>().toggleTheme();
-                    setState(() {});
-                    themeChange = !themeChange;
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return const Settings();
+                    }));
+                    // context.read<ThemeCubit>().toggleTheme();
+                    // setState(() {});
+                    // themeChange = !themeChange;
                   },
-                  icon: Icon(
-                    themeChange
-                        ? Icons.brightness_2_outlined
-                        : Icons.brightness_2_sharp,
+                  icon: const Icon(
+                    Icons.settings, size: 28,
+                    // themeChange
+                    //     ? Icons.brightness_2_outlined
+                    //     : Icons.brightness_2_sharp,
                   ),
                 )
               ],
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(20),
+                ),
+              ),
             ),
             bottomNavigationBar: BottomNavigationBar(
               unselectedFontSize: 14,
