@@ -37,13 +37,14 @@ class _SettingsState extends State<Settings> {
             setState(() {});
             themeChange = !themeChange;
           },
-          activeColor: kColor4,
-          activeTrackColor: kColor3,
-          inactiveTrackColor: Colors.grey[300],
+          activeColor: kGrey,
+          activeTrackColor: kWhite,
+          inactiveThumbColor: kColor4,
+          inactiveTrackColor: kColor2,
           secondary: Icon(
             themeChange
-                ? Icons.brightness_2_outlined
-                : Icons.brightness_2_sharp,
+                ? Icons.brightness_2_sharp
+                : Icons.brightness_2_outlined,
             size: 30,
           ),
         ),
